@@ -1,28 +1,27 @@
 package jogo;
 
 import jplay.Keyboard;
-
 import jplay.Scene;
 import jplay.URL;
 import jplay.Window;
 
-public class Cenario1 extends Cenario {
+public class Cenario2 extends Cenario {
+
 	private Window janela;
 	private Scene cena;
 	private Jogador jogador;
 	private Keyboard teclado;
 	private Zumbi zumbi;
 	private Zumbi zumbi1;
-	
 
-	public Cenario1(Window window) {
+	public Cenario2(Window window) {
 		
 		janela = window;
 		cena = new Scene();
-		cena.loadFromFile(URL.scenario("Cenario1.csn"));
+		cena.loadFromFile(URL.scenario("Cenario2.csn"));
 		jogador = new Jogador(640, 350);
 		teclado = janela.getKeyboard();
-		zumbi = new Zumbi(300, 300);
+		zumbi = new Zumbi(350, 350);
 		zumbi1 = new Zumbi(308, 308);
 		
 		//Som.play("missaoimpossvel.mid");
@@ -58,17 +57,14 @@ public class Cenario1 extends Cenario {
 			
 			mudarCenario();
 			
+			}
+			
 		}
+		private void mudarCenario(){
+			
+			if(tileCollision(6, jogador, cena)==true){
+				new Cenario1(janela);
+			}
 
 	}
-	
-	private void mudarCenario(){
-		
-		if(tileCollision(6, jogador, cena)==true){
-			new Cenario2(janela);
-		}
-		
-	}
-	
-
 }

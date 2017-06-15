@@ -31,7 +31,7 @@ public class Zumbi extends Ator {
 			}
 			movendo = true;
 		}
-		else if(this.y < y ){
+		else if(this.y > y ){
 			moveTo(x, y, velocidade);
 			if(direcao != 4){
 				setSequence(12, 16);
