@@ -4,12 +4,13 @@ import jplay.URL;
 
 public class Zumbi extends Ator {
 
+	private double ataque = 1;
 	public Zumbi(int x, int y) {
 		super(URL.sprite("zumbi.png"), 16);
 		this.x = x;
 		this.y = y;
 		this.setTotalDuration(2000);
-		this.velocidade = 0.3;
+		this.velocidade = 0.1;
 		
 	}
 	
@@ -51,6 +52,25 @@ public class Zumbi extends Ator {
 		if(movendo){
 			update();
 			movendo = false;
+		}
+	}
+
+	public void morrer() {
+		if(this.energia <= 0){
+			this.velocidade = 0;
+			//this.ataque = 0;
+			this.direcao = 0;
+			this.movendo = false;
+			this.x = 1_000_000;
+		}
+		
+	}
+	public void atacar(Jogador jogador){
+		if(this.collided(jogador)){
+			Jogador.energia -= this.ataque;
+		}
+		if(Jogador.energia <= 0){
+			System.exit(0);
 		}
 	}
 

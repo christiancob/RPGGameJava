@@ -19,7 +19,7 @@ public class Principal {
 			janela.update();
 
 			if (teclado.keyDown(Keyboard.ENTER_KEY)) {
-				new Cenario1(janela);
+				new Terra(janela);
 			}
 
 		}

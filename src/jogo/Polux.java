@@ -5,8 +5,7 @@ import jplay.Scene;
 import jplay.URL;
 import jplay.Window;
 
-public class Cenario2 extends Cenario {
-
+public class Polux extends Cenario {
 	private Window janela;
 	private Scene cena;
 	private Jogador jogador;
@@ -14,15 +13,15 @@ public class Cenario2 extends Cenario {
 	private Zumbi zumbi;
 	private Zumbi zumbi1;
 
-	public Cenario2(Window window) {
+	public Polux(Window window) {
 		
 		janela = window;
 		cena = new Scene();
-		cena.loadFromFile(URL.scenario("Cenario2.csn"));
-		jogador = new Jogador(640, 350);
+		cena.loadFromFile(URL.scenario("cenarioPolux.csn"));
+		jogador = new Jogador(400, 400);
 		teclado = janela.getKeyboard();
-		zumbi = new Zumbi(350, 350);
-		zumbi1 = new Zumbi(308, 308);
+		zumbi = new Zumbi(150, 150);
+		zumbi1 = new Zumbi(208, 208);
 		
 		//Som.play("missaoimpossvel.mid");
 		run();
@@ -63,8 +62,10 @@ public class Cenario2 extends Cenario {
 		private void mudarCenario(){
 			
 			if(tileCollision(6, jogador, cena)==true){
-				new Cenario1(janela);
+				new Terra(janela);
 			}
 
 	}
+	
+	
 }

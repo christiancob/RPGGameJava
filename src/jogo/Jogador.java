@@ -1,6 +1,9 @@
 package jogo;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.util.Vector;
 
 import jplay.GameObject;
@@ -16,7 +19,7 @@ public class Jogador extends Ator {
 	// atributos para o jogador se locomover
 
 	
-	static double energia = 100;
+	static double energia = 2000;
 
 	
 
@@ -27,6 +30,14 @@ public class Jogador extends Ator {
 		
 		this.setTotalDuration(2000);
 
+	}
+	ControleTiros tiros = new ControleTiros();
+	public void atirar(Window janela, Scene cena, Keyboard teclado, Ator inimigo){
+		if(teclado.keyDown(KeyEvent.VK_A)){
+			tiros.adicionaTiro(x+7, y+11, direcao, cena);
+		}
+		tiros.run(inimigo);
+	
 	}
 
 	public void controle(Window janela, Keyboard teclado) {
@@ -75,7 +86,11 @@ public class Jogador extends Ator {
 	}
 
 	
-
+	Font f = new Font("arial", Font.BOLD, 30);
+	
+	public void energia(Window janela){
+		janela.drawText("Energia: "+Jogador.energia, 30, 30,Color.GREEN, f);
+	}
 	
 
 }
