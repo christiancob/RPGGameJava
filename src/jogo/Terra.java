@@ -12,18 +12,15 @@ public class Terra extends Cenario {
 	private Jogador jogador;
 	private Keyboard teclado;
 	private Zumbi zumbi[];
-	private Zumbi zumbi1;
 	
-
-	public Terra(Window window) {
+	public Terra(Window window, Jogador jog) {
 		
 		janela = window;
 		cena = new Scene();
 		cena.loadFromFile(URL.scenario("CenarioTerra.csn"));
-		jogador = new Jogador(640, 350);
+		jogador = jog;
 		teclado = janela.getKeyboard();
 		zumbi = new Zumbi[10];
-		
 		
 		//Som.play("missaoimpossvel.mid");
 		run();
@@ -38,10 +35,7 @@ public class Terra extends Cenario {
 		while (true) {
 			//cena.draw();
 			jogador.controle(janela, teclado);
-			jogador.caminho(cena);
-			
-
-			
+			jogador.caminho(cena);	
 			
 			cena.moveScene(jogador);
 			jogador.x += cena.getXOffset();
@@ -57,15 +51,11 @@ public class Terra extends Cenario {
 				zumbi[i].draw();
 				jogador.atirar(janela, cena, teclado, zumbi[i]);	
 				zumbi[i].morrer();
-				zumbi[i].atacar(jogador);
-				
+				zumbi[i].atacar(jogador);	
 				
 			}			
 			
-			jogador.energia(janela);
-			
-			
-			
+			jogador.energia(janela);		
 			
 			janela.update();
 			janela.delay(10);
@@ -79,10 +69,9 @@ public class Terra extends Cenario {
 	private void mudarCenario(){
 		
 		if(tileCollision(6, jogador, cena)==true){
-			new Venus(janela);
+			new Venus(janela, jogador);
 		}
 		
 	}
-	
 
 }

@@ -2,35 +2,46 @@ package jogo;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.Vector;
 
-import jplay.GameObject;
 import jplay.Keyboard;
 import jplay.Scene;
-import jplay.Sprite;
-import jplay.TileInfo;
 import jplay.URL;
 import jplay.Window;
 
 public class Jogador extends Ator {
-
-	// atributos para o jogador se locomover
-
 	
-	static double energia = 2000;
+	static double energia;
+	static String nome;
+	static String classe;
+	static String genero;
 
-	
-
-	public Jogador(int x, int y) {
+	public Jogador(String name, String classes, String gen, String mundo) {
 		super(URL.sprite("jogador.png"), 20);
-		this.x = x;
-		this.y = y;
+		setPosition(mundo);
 		
+		energia = 2000;
+		nome = name;
+		classe = classes;
+		genero = gen;
 		this.setTotalDuration(2000);
 
 	}
+	
+	public void setPosition(String planeta){
+		if(planeta.equals("Terra")){
+			this.x = 640;
+			this.y = 350;
+		}else if(planeta.equals("Polux")){
+			this.x = 400;
+			this.y = 400;
+		}else if(planeta.equals("Vênus")){
+			this.x = 640;
+			this.y = 350;
+		}
+		
+	}
+	
 	ControleTiros tiros = new ControleTiros();
 	public void atirar(Window janela, Scene cena, Keyboard teclado, Ator inimigo){
 		if(teclado.keyDown(KeyEvent.VK_A)){
@@ -86,10 +97,12 @@ public class Jogador extends Ator {
 	}
 
 	
-	Font f = new Font("arial", Font.BOLD, 30);
+	Font fG = new Font("arial", Font.BOLD, 30);
+	Font fP = new Font("arial", Font.BOLD, 18);
 	
 	public void energia(Window janela){
-		janela.drawText("Energia: "+Jogador.energia, 30, 30,Color.GREEN, f);
+		janela.drawText(Jogador.nome, 10, 30,Color.RED, fG);
+		janela.drawText("HP: "+Jogador.energia, 10, 54,Color.GREEN, fP);
 	}
 	
 

@@ -13,12 +13,12 @@ public class Polux extends Cenario {
 	private Zumbi zumbi;
 	private Zumbi zumbi1;
 
-	public Polux(Window window) {
+	public Polux(Window window, Jogador jog) {
 		
 		janela = window;
 		cena = new Scene();
 		cena.loadFromFile(URL.scenario("cenarioPolux.csn"));
-		jogador = new Jogador(400, 400);
+		jogador = jog;
 		teclado = janela.getKeyboard();
 		zumbi = new Zumbi(150, 150);
 		zumbi1 = new Zumbi(208, 208);
@@ -62,7 +62,7 @@ public class Polux extends Cenario {
 		private void mudarCenario(){
 			
 			if(tileCollision(6, jogador, cena)==true){
-				new Terra(janela);
+				new Terra(janela, jogador);
 			}
 
 	}

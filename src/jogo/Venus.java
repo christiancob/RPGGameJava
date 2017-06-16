@@ -14,13 +14,13 @@ public class Venus extends Cenario {
 	private Zumbi zumbi;
 	private Zumbi zumbi1;
 
-	public Venus(Window window) {
+	public Venus(Window window, Jogador jog) {
 		
 		janela = window;
 		cena = new Scene();
 		cena.loadFromFile(URL.scenario("cenarioVenus.csn"));
-		jogador = new Jogador(640, 350);
 		teclado = janela.getKeyboard();
+		jogador = jog;
 		zumbi = new Zumbi(350, 350);
 		zumbi1 = new Zumbi(308, 308);
 		
@@ -63,7 +63,7 @@ public class Venus extends Cenario {
 		private void mudarCenario(){
 			
 			if(tileCollision(6, jogador, cena)==true){
-				new Polux(janela);
+				new Polux(janela, jogador);
 			}
 
 	}
