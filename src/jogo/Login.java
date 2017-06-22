@@ -140,8 +140,8 @@ public class Login extends javax.swing.JPanel {
 
 	@SuppressWarnings("deprecation")
 	private void tbnLoginActionPerformed(java.awt.event.ActionEvent evt) {                                         
-		String name = "fatecsjc";
-		String senha = "1234";
+		String name = "f";
+		String senha = "1";
 
 		if(txtLogin.getText().equals(name) && inpSenha.getText().equals(senha)){
 			pagLgn.dispose();

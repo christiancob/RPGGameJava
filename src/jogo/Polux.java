@@ -10,8 +10,9 @@ public class Polux extends Cenario {
 	private Scene cena;
 	private Jogador jogador;
 	private Keyboard teclado;
-	private Zumbi zumbi;
-	private Zumbi zumbi1;
+	private Zumbi zumbi[];
+	private String planeta = "Planeta Polux";
+	
 
 	public Polux(Window window, Jogador jog) {
 		
@@ -20,8 +21,7 @@ public class Polux extends Cenario {
 		cena.loadFromFile(URL.scenario("cenarioPolux.csn"));
 		jogador = jog;
 		teclado = janela.getKeyboard();
-		zumbi = new Zumbi(150, 150);
-		zumbi1 = new Zumbi(208, 208);
+		zumbi = new Zumbi[10];
 		
 		//Som.play("missaoimpossvel.mid");
 		run();
@@ -29,30 +29,35 @@ public class Polux extends Cenario {
 
 	
 	public void run() {
+		for (int i = 0; i < zumbi.length; i++) {
+			zumbi[i] = new Zumbi(100*i,100*i);
+		}
 		while (true) {
-			//cena.draw();
 			jogador.controle(janela, teclado);
-			jogador.caminho(cena);
-			zumbi.perseguir(jogador.x, jogador.y);
-			zumbi.caminho(cena);
-			zumbi1.perseguir(jogador.x, jogador.y);
-			zumbi1.caminho(cena);
-			
+			jogador.caminho(cena);	
 			
 			cena.moveScene(jogador);
 			jogador.x += cena.getXOffset();
 			jogador.y += cena.getYOffset();
-			
-			zumbi.x += cena.getXOffset();
-			zumbi.y += cena.getYOffset();
-			
-			zumbi1.x += cena.getXOffset();
-			zumbi1.y += cena.getYOffset();
-			
+						
 			jogador.draw();
-			zumbi.draw();
-			zumbi1.draw();
+			
+			for (int i = 0; i < zumbi.length; i++) {
+				zumbi[i].caminho(cena);
+				zumbi[i].perseguir(jogador.x, jogador.y);			
+				zumbi[i].x += cena.getXOffset();
+				zumbi[i].y += cena.getYOffset();
+				zumbi[i].draw();
+				jogador.atirar(janela, cena, teclado, zumbi[i]);	
+				zumbi[i].morrer();
+				zumbi[i].atacar(jogador);	
+				
+			}			
+			
+			jogador.energia(janela, planeta);		
+			
 			janela.update();
+			janela.delay(7);
 			
 			mudarCenario();
 			
@@ -62,7 +67,7 @@ public class Polux extends Cenario {
 		private void mudarCenario(){
 			
 			if(tileCollision(6, jogador, cena)==true){
-				new Terra(janela, jogador);
+				new Venus(janela, jogador);
 			}
 
 	}

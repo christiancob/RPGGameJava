@@ -97,12 +97,15 @@ public class Jogador extends Ator {
 	}
 
 	
-	Font fG = new Font("arial", Font.BOLD, 30);
+	Font fG = new Font("arial", Font.BOLD, 25);
 	Font fP = new Font("arial", Font.BOLD, 18);
+	Font fPL = new Font("arial", Font.BOLD, 35);
 	
-	public void energia(Window janela){
+	public void energia(Window janela, String planeta){
 		
 		janela.drawText(Jogador.classe+": "+Jogador.nome, 10, 30,Color.RED, fG);
+		janela.drawText(planeta, 565, 30,Color.BLUE, fPL);
+				
 		janela.drawText("HP: "+Jogador.energia, 10, 54,Color.GREEN, fP);
 	}
 	

@@ -1,5 +1,8 @@
 package jogo;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import jplay.Keyboard;
 
 import jplay.Scene;
@@ -7,11 +10,14 @@ import jplay.URL;
 import jplay.Window;
 
 public class Terra extends Cenario {
+	
 	private Window janela;
 	private Scene cena;
 	private Jogador jogador;
 	private Keyboard teclado;
 	private Zumbi zumbi[];
+	private String planeta = "Planeta Terra";
+	
 	
 	public Terra(Window window, Jogador jog) {
 		
@@ -22,7 +28,7 @@ public class Terra extends Cenario {
 		teclado = janela.getKeyboard();
 		zumbi = new Zumbi[10];
 		
-		//Som.play("missaoimpossvel.mid");
+		Som.play("missaoimpossvel.mid");
 		run();
 	}
 
@@ -55,21 +61,22 @@ public class Terra extends Cenario {
 				
 			}			
 			
-			jogador.energia(janela);		
+			jogador.energia(janela, planeta);		
 			
 			janela.update();
-			janela.delay(10);
+			janela.delay(7);
 			
 			mudarCenario();
 			
 		}
 
 	}
+		
 	
 	private void mudarCenario(){
 		
-		if(tileCollision(6, jogador, cena)==true){
-			new Venus(janela, jogador);
+		if(tileCollision(17, jogador, cena)==true){
+			new Polux(janela, jogador);
 		}
 		
 	}
